@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbm.saekalpi.app.emotion.dao.EmotionPostDao">
+
+    <!-- 사용자의 색상 설정 조회 -->
+    <select id="getMyColorSetting" resultType="java.util.HashMap">
+        SELECT color, colorName FROM emotionSetting WHERE userIdx = #{userIdx}
+    </select>
+
+    <!-- 사용자의 기본 감정 설정 저장 -->
+    <insert id="postDefaultEmotionSetting" parameterType="int">
+        INSERT INTO emotionSetting (userIdx, defaultEmotion) VALUES (#{userIdx}, 'Happy')
+    </insert>
+
+    <!-- 사용자의 색상 설정 업데이트 -->
+    <update id="patchMyColorSetting" parameterType="map">
+        UPDATE emotionSetting SET color = #{color}, colorName = #{colorName} WHERE userIdx = #{userIdx}
+    </update>
+
+    <!-- 특정 날짜에 대한 사용자의 색상 업데이트 (가정) -->
+    <update id="patchMyColorByDate" parameterType="map">
+        UPDATE diary SET color = #{color} WHERE userIdx = #{userIdx} AND date = #{date}
+    </update>
+
+</mapper>

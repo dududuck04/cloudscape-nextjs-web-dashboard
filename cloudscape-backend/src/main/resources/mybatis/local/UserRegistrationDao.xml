@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stc.exporter.app.user.dao.UserRegistrationDao">
+    <select id="checkEmail" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM userTB
+        WHERE email = #{email}
+    </select>
+
+    <select id="checkVerificationEmail" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM userTB
+        WHERE email = #{email}
+    </select>
+
+    <select id="checkVerificationPassword" resultType="boolean">
+        SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
+        FROM userTB
+        WHERE password = #{password}
+    </select>
+
+    <insert id="postUser" parameterType="map">
+        INSERT INTO userTB (email, password, nickname)
+        VALUES (#{email}, #{password}, #{nickname})
+    </insert>
+
+    <insert id="postNickname" parameterType="string">
+        INSERT INTO nicknames (nickname)
+        VALUES (#{nickname})
+    </insert>
+
+    <select id="getUserIdxByEmail" resultType="int">
+        SELECT id
+        FROM userTB
+        WHERE email = #{email}
+    </select>
+
+    <select id="getEmailByUserIdx" resultType="string">
+        SELECT email
+        FROM userTB
+        WHERE id = #{userIdx}
+    </select>
+
+    <insert id="postTempUser" parameterType="string">
+        INSERT INTO temp_users (email)
+        VALUES (#{email})
+    </insert>
+
+    <select id="findUserByUserIdx" resultType="com.stc.exporter.config.security.CustomUserDetails">
+        SELECT userIdx, email, password, nickname, createdAt, lastLogin
+        FROM userTB
+        WHERE userIdx = #{userIdx}
+    </select>
+
+    <select id="findUserByUserEmail" resultType="com.stc.exporter.config.security.CustomUserDetails">
+        SELECT userIdx, email, password, nickname, createdAt, lastLogin
+        FROM userTB
+        WHERE email = #{email}
+    </select>
+
+
+    <!-- 기타 SQL 쿼리 정의 -->
+</mapper>

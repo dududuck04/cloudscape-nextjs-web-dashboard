@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbm.saekalpi.app.diary.dao.DiaryPostDao">
+
+    <!-- 일기 저장 -->
+    <insert id="postDiary" parameterType="java.util.HashMap">
+        INSERT INTO diaryTB (userIdx, date, story, color) VALUES (#{userIdx}, #{date}, #{story}, #{color})
+    </insert>
+
+    <!-- 해당 날짜에 일기가 비어있는지 확인 -->
+    <select id="checkDiaryEmpty" resultType="boolean">
+        SELECT COUNT(*) = 0 FROM diaryTB WHERE date = #{date}
+    </select>
+
+    <!-- 특정 날짜의 모든 스토리 조회 -->
+    <select id="getAllStoryByDate" resultType="java.lang.String">
+        SELECT story FROM diaryTB WHERE date = #{date}
+    </select>
+
+    <!-- 특정 날짜의 일기 조회 -->
+    <select id="getDiaryByDate" resultType="java.util.HashMap">
+        SELECT * FROM diaryTB WHERE date = #{date} AND userIdx = #{userIdx}
+    </select>
+
+    <!-- 특정 달의 모든 일기 색상 조회 -->
+    <select id="getDiaryColorByMonth" resultType="java.util.HashMap">
+        SELECT date, color FROM diaryTB WHERE YEAR(date) = YEAR(#{date}) AND MONTH(date) = MONTH(#{date}) AND userIdx = #{userIdx}
+    </select>
+
+</mapper>

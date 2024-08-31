@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stc.exporter.app.user.dao.TokenDao">
+
+    <!-- 사용자의 JWT 토큰을 저장합니다. -->
+    <insert id="saveJwt">
+        INSERT INTO tokenTB (userIdx, token, expiryDate) VALUES (#{userIdx}, #{token}, #{expiryDate})
+    </insert>
+
+    <!-- 주어진 사용자 ID에 대해 저장된 JWT 토큰의 존재 여부를 확인합니다. -->
+    <select id="checkJwt" resultType="boolean">
+        SELECT COUNT(*) > 0 FROM tokenTB WHERE userIdx = #{userIdx}
+    </select>
+
+    <!-- 사용자의 JWT 토큰 정보를 업데이트합니다. -->
+    <update id="updateJwt">
+        UPDATE tokenTB SET token = #{token}, expiryDate = #{expiryDate} WHERE userId = #{userIdx}
+    </update>
+
+    <!-- 사용자의 JWT 토큰을 조회합니다. -->
+    <select id="getJwt" resultType="string">
+        SELECT token FROM tokenTB WHERE userIdx = #{userIdx}
+    </select>
+
+</mapper>

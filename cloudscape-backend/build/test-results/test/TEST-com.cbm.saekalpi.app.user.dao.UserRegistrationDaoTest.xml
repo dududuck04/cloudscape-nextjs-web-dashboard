@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-03-08T01:48:09" hostname="MZC01-KIMKM95.local" time="0.164">
+  <properties/>
+  <testcase name="사용자 등록 테스트" classname="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" time="0.148"/>
+  <testcase name="이메일 중복 테스트" classname="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" time="0.004"/>
+  <testcase name="이메일에 의한 사용자 인덱스 얻기 테스트" classname="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" time="0.002"/>
+  <testcase name="비밀번호 검증 테스트" classname="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" time="0.002"/>
+  <testcase name="실제 이메일이 존재하는지 테스트" classname="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" time="0.001"/>
+  <testcase name="사용자 인덱스에 의한 이메일 얻기 테스트" classname="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" time="0.001"/>
+  <testcase name="별명 등록 테스트" classname="com.cbm.saekalpi.app.user.dao.UserRegistrationDaoTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

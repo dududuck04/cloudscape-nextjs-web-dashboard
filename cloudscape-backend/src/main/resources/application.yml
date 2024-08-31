@@ -1,0 +1,125 @@
+# MyBatis
+mybatis:
+#  config-location: "classpath:mybatis/mybatis-config.xml"
+  mapper-locations: "classpath:mybatis/mapper/**/*.xml"
+  type-aliases-package: "com.cbm.saekalpi"
+
+# Server
+server:
+  port: 8081
+  forward-headers-strategy: framework
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+    include-exception: false
+  servlet:
+    encoding:
+      force-response: true
+      charset: utf-8
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /rest/actuator
+      exposure:
+        include: '*'
+
+# Spring
+spring:
+  datasource:
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+    username: "root"
+    password: ""
+  security:
+    oauth2:
+      client:
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+        registration:
+          kakao:
+            client-id:
+            client-secret:
+            client-authentication-method: client_secret_post
+            redirect-uri: http://localhost:8081/login/oauth2/code/kakao
+            authorization-grant-type: authorization_code
+            client-name: kakao
+            scope:
+              - profile_nickname
+
+
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+  swagger-ui:
+    enabled: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+    doc-expansion: none
+  cache:
+    disabled: true
+  model-and-view-allowed: true
+  show-actuator: true
+  writer-with-default-pretty-printer: true
+  show-login-endpoint: true
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+
+
+logging:
+  level:
+    org.springframework: DEBUG
+#    org.mybatis: DEBUG
+#    org.hibernate.SQL: DEBUG
+
+
+---
+# 'local' profile
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  datasource:
+    driver-class-name: "org.h2.Driver"
+#    url: "jdbc:h2:~/localdb"
+    url: "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
+    username: "sa"
+    password: ""
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
+
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username:
+#    password:
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#          connectiontimeout: 5000
+#          timeout: 5000
+#          writetimeout: 5000
+---
+# 'dev' profile
+spring:
+  config:
+    activate:
+      on-profile: "production"
+  datasource:
+    url: ""

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stc.exporter.app.user.dao.UserLoginDao">
+
+    <!-- 사용자의 로그인 상태를 확인합니다. -->
+    <select id="checkLoginStatus" resultType="boolean">
+        SELECT CASE WHEN lastLoginTime IS NOT NULL THEN TRUE ELSE FALSE END FROM userLoginTable WHERE userIdx = #{userIdx}
+    </select>
+
+    <!-- 사용자의 마지막 로그인 시간을 업데이트합니다. -->
+    <update id="updateLastLoginTime">
+        UPDATE userTB SET lastLogin = #{now} WHERE userIdx = #{userIdx}
+    </update>
+
+
+    <!-- 사용자의 로그인 상태를 업데이트합니다. -->
+    <update id="updateLoginStatus">
+        UPDATE userLoginTable SET isLoggedIn = TRUE WHERE userIdx = #{userIdx}
+    </update>
+
+    <!-- 사용자의 마지막 로그인 시간을 조회합니다. -->
+    <select id="getLastLoginTime" resultType="java.sql.Timestamp">
+        SELECT lastLoginTime FROM userLoginTable WHERE userIdx = #{userIdx}
+    </select>
+
+</mapper>

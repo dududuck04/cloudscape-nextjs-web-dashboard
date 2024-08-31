@@ -1,0 +1,56 @@
+{
+  "name": "cloudscape-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "npx prettier --ignore-path .gitignore --write \"**/*.+(tsx|js|ts|json)\""
+  },
+  "dependencies": {
+    "@cloudscape-design/components": "^3.0.521",
+    "@cloudscape-design/design-tokens": "^3.0.34",
+    "@cloudscape-design/global-styles": "^1.0.23",
+    "@cloudscape-design/component-toolkit": "^1.0.0-beta.43",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-ec2": "3.544.0",
+    "dotenv": "16.4.5",
+    "@types/node": "^20.12.2",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.35",
+    "sass": "^1.70.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.3",
+    "vite": "^5.1.0",
+    "next": "^14.1.4",
+    "@next/mdx": "^14.1.0",
+    "@t3-oss/env-nextjs": "^0.9.2",
+    "@storybook/nextjs": "8.0.0-beta.5",
+    "@tanstack/react-query": "^5.24.1",
+    "@tanstack/react-query-devtools": "^5.24.1",
+    "@tanstack/react-query-next-experimental": "^5.24.1",
+    "eslint-config-next": "^14.1.0",
+    "zustand": "^4.5.1"
+
+  },
+  "overrides": {
+    "react-virtual": {
+      "react": "^18.0.0"
+    }
+  }
+}

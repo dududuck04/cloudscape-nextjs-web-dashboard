@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbm.saekalpi.app.color.dao.ColorPostDao">
+
+    <!-- 사용자의 색상 설정을 조회합니다. -->
+    <select id="getMyColorSetting" resultType="java.util.HashMap" parameterType="int">
+        SELECT * FROM colorSetting WHERE userIdx = #{userIdx}
+    </select>
+
+    <!-- 사용자의 기본 색상 설정을 저장합니다. -->
+    <insert id="postDefaultColorSetting" parameterType="int">
+        INSERT INTO colorSetting (userIdx, color, colorName) VALUES (#{userIdx}, 'defaultColor', 'defaultName')
+    </insert>
+
+    <!-- 사용자의 색상 설정을 수정합니다. -->
+    <update id="patchMyColorSetting" parameterType="map">
+        UPDATE colorSetting SET color = #{color}, colorName = #{colorName} WHERE userIdx = #{userIdx}
+    </update>
+
+    <!-- 특정 날짜의 사용자 색상을 수정합니다. -->
+    <update id="patchMyColorByDate" parameterType="map">
+        UPDATE colorSettingByDate SET color = #{color} WHERE userIdx = #{userIdx} AND date = #{date}
+    </update>
+
+    <!-- 특정 날짜에 사용자 색상을 저장합니다. -->
+    <insert id="postColorByDate" parameterType="map">
+        INSERT INTO colorSettingByDate (userIdx, date, color) VALUES (#{userIdx}, #{date}, #{color})
+    </insert>
+
+</mapper>
